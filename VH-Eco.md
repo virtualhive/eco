@@ -30,7 +30,89 @@ Taking all this information into account, it is clear every sector (energy, AFOL
 
 ## GHG Emission Identification
 
+Our inventory approach to determine carbon dioxide equivalent (CO2e) emissions of Virtual Hive is based on the 3 scopes defined by the GHG Protocol [7],[8].
+
+### Green Energy and CO2 eq.
+
+Currently all our servers are powered by 100% renewables but against the common believe this does not equal 0 g CO2 eq. per Watt since the manufacturing and building processes of renewable energy technologies as well as transportation and possible other scope 3 emissions, in short the lifecycle needs to be accounted for. There is a report published by the United Nations Economic Commission for Europe which investigates the topic of lifecycle impacts of electricity generation also for renewables [11]. The report shows how difficult it is to estimate the actual impact. However, we want to account for these emissions and hence have to derive a single value for renewable CO2 eq./kWh. The energy mix of renewables in the EU is as follows [12]:
+
+- 36% Wind
+- 33% Hydro
+- 14% Solar
+- 8% Solid Biofuels
+- 8% other
+
+Based on the report of the UNECE [11] Table 14 “LCIA results for region EUR (Europe EU 28), in 2020 […]“ the following CO2 eq./kWh can be used to calculate an average CO2 eq./kWh for the renewable mix:
+
+- Wind: ~13 g CO2 eq./kWh (average for onshore/ offshore, concrete foundation/ offshore, steel foundation
+- Hydro: ~11 g CO2 eq./kWh (based on a 360 MW facility as it is most representative)
+- Solar: ~21 g CO2 eq./kWh (average of all PV variants)
+- Solid Biofuels: N/A
+- Other: N/A
+
+For solid biofuels and others we will assume a CO2 eq. of natural gas with a conservative 281 g CO2 eq./kWh (based on the average of natural gas CO2 eq. in [11] Table 14).
+
+#### Average Renewable Mix CO2 eq./kWh
+
+0.36 * 13 g CO2 eq./kWh + 0.33 * 11 g CO2 eq./kWh + 0.14 * 21 g CO2 eq./kWh + (0.08 + 0.08) * 281 g CO2 eq./kWh = 56.21 g CO2 eq./kWh = **~56 g CO2 eq./kWh**
+
+
+
+### Scope 1
+
+*Direct emissions (manufacturing combustion, vehicles etc.)*
+
+Virtual Hive has one small car in its inventory which is leased until April 2023. Even though it is not used to travel to work since we all work remote, it is still accounted for.
+
+#### Company vehicles
+
+1 small car, built 2019, average of 2000 km per year
+
+Average of 122.3 g CO2 eq./km [9]
+
+2000 km/year * 0.1223 kg CO2/km = **244.6 kg CO2 eq./year**
+
+
+
+### Scope 2
+
+*Indirect emissions (purchased electricity)*
+
+Since Virtual Hive does neither own nor rent any office space or buildings due to full remote work, the scope 2 emissions include only the electricity which is directly accountable to the company by the use of laptops, desktop PCs and servers.
+
+#### Laptops/desktop PCs
+
+5 laptops and 3 desktop PCs are used. The average usage is estimated with 12 hours per day 365 days a year.
+
+Per laptop/desktop PC\*:
+
+~90W * 12h/day * 365 days/year = 394.2 kWh/year
+
+0.056 kg CO2 eq./kWh * 394.2 kWh/year = ~22.1 kg CO2 eq./year
+
+5 * 22.1 kg CO2 eq./year = **110.5 kg CO2 eq./year**
+
+\**90W is based on the average power supplies of laptops and measured consumption by desktop PCs - it is at the upper boundary.*
+
+
+
+#### Servers
+
+The amount of servers is changing frequently so we will use an upper boundary of 70 servers which will not be exceeded in 2022. Based on an average workload of 50% idle and 50% full load a power consumption of 216 W per hour can be assumed [10]. All servers are running 24 hours on 365 days per year.
+
+0.216 kW * 24 h/day * 365 days/year = 1892.16 kWh/year
+
+0.056 kg CO2 eq./kWh * 1892.16 kWh/year/server = 105.96 kg CO2 eq./year/server
+
+70 servers * 105.96 kg CO2 eq./year/server = **7417.2 kg CO2 eq./year**
+
+
+
+### Scope 3
+
 *Work in progress*
+
+
 
 ## Mitigations
 
@@ -61,4 +143,16 @@ https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_TS.pdf
 Arias, P.A., N. Bellouin, E. Coppola, R.G. Jones, G. Krinner, J. Marotzke, V. Naik, M.D. Palmer, G.-K. Plattner, J. Rogelj, M. Rojas, J. Sillmann, T. Storelvmo, P.W. Thorne, B. Trewin, K. Achuta Rao, B. Adhikary, R.P. Allan, K. Armour, G. Bala, R. Barimalala, S. Berger, J.G. Canadell, C. Cassou, A. Cherchi, W. Collins, W.D. Collins, S.L. Connors, S. Corti, F. Cruz, F.J. Dentener, C. Dereczynski, A. Di Luca, A. Diongue Niang, F.J. Doblas-Reyes, A. Dosio, H. Douville, F. Engelbrecht, V. Eyring, E. Fischer, P. Forster, B. Fox-Kemper, J.S. Fuglestvedt, J.C. Fyfe, N.P. Gillett, L. Goldfarb, I. Gorodetskaya, J.M. Gutierrez, R. Hamdi, E. Hawkins, H.T. Hewitt, P. Hope, A.S. Islam, C. Jones, D.S. Kaufman, R.E. Kopp, Y. Kosaka, J. Kossin, S. Krakovska, J.-Y. Lee, J. Li, T. Mauritsen, T.K. Maycock, M. Meinshausen, S.-K. Min, P.M.S. Monteiro, T. Ngo-Duc, F. Otto, I. Pinto, A. Pirani, K. Raghavan, R. Ranasinghe, A.C. Ruane, L. Ruiz, J.-B. Sallée, B.H. Samset, S. Sathyendranath, S.I. Seneviratne, A.A. Sörensson, S. Szopa, I. Takayabu, A.-M. Tréguier, B. van den Hurk, R. Vautard, K. von Schuckmann, S. Zaehle, X. Zhang, and K. Zickfeld, 2021: Technical Summary. In Climate Change 2021: The Physical Science Basis. Contribution of Working Group I to the Sixth Assessment Report of the Intergovernmental Panel on Climate Change [Masson-Delmotte, V., P. Zhai, A. Pirani, S.L. Connors, C. Péan, S. Berger, N. Caud, Y. Chen, L. Goldfarb, M.I. Gomis, M. Huang, K. Leitzell, E. Lonnoy, J.B.R. Matthews, T.K. Maycock, T. Waterfield, O. Yelekçi, R. Yu, and B. Zhou (eds.)]. Cambridge University Press, Cambridge, United Kingdom and New York, NY, USA, pp. 33−144. doi:10.1017/9781009157896.002.
 
 [6] https://www.ipcc.ch/2021/08/09/ar6-wg1-20210809-pr/ 
+
+[7] https://www.epa.gov/climateleadership/ghg-inventory-guidance-low-emitters  
+
+[8] https://www.wri.org/initiatives/greenhouse-gas-protocol 
+
+[9] https://www.eea.europa.eu/ims/co2-performance-of-new-passenger  
+
+[10] https://i.dell.com/sites/content/corporate/corp-comm/en/Documents/dell-server-carbon-footprint-whitepaper.pdf
+
+[11] UNECE: Life Cycle Assessment of Electricity Generation Options, 2021 https://unece.org/sed/documents/2021/10/reports/life-cycle-assessment-electricity-generation-options 
+
+[12] https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Renewable_energy_statistics#Wind_and_water_provide_most_renewable_electricity.3B_solar_is_the_fastest-growing_energy_source
 
